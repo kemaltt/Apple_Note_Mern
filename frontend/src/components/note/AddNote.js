@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { apiBaseUrl } from "../../api/api.js";
 
 export default function AddNote({ token }) {
@@ -30,9 +30,9 @@ export default function AddNote({ token }) {
       .then(() => setFeedback(`New note added to database!`));
   };
 
-  useEffect(() => {
-    getNotes();
-  }, [notes]);
+  // useEffect(() => {
+  //   getNotes();
+  // }, [notes]);
 
   return (
     <div>

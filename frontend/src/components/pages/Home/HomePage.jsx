@@ -1,10 +1,10 @@
 import NoteList from "../../note/NoteList";
 
-const HomePage = () => {
+const HomePage = ({ token }) => {
   return (
     // <DefaultPage title="Home"></DefaultPage>
 
-    <NoteList />
+    <NoteList token={token} />
   );
 };
 

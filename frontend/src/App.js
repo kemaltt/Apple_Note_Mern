@@ -9,7 +9,7 @@ import PostPage from "./components/pages/Post/PostPage";
 
 function App() {
   const [token, setToken] = useState();
-  const [userId, setUserId] = useState("");
+  // const [userId, setUserId] = useState("");
 
   return (
     <React.Fragment>
@@ -27,11 +27,12 @@ function App() {
           />
           <Route path="/login" element={<LoginPage setToken={setToken} />} />
           <Route path="/register" element={<RegisterPage />} />
+
           <Route
             path="/home"
             element={
               <AuthRequired token={token}>
-                <HomePage />
+                <HomePage token={token} />
               </AuthRequired>
             }
           />

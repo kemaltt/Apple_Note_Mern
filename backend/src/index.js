@@ -83,6 +83,8 @@ app.post("/users/register", async (req, res) => {
 
 // app.get("/", (_, res) => res.send("it works :)"));
 
+// ==== NOTES ====
+
 app.get("/notes", (_, res) => {
   getNotes()
     .then((notes) => res.json(notes))
@@ -92,12 +94,43 @@ app.get("/notes", (_, res) => {
     });
 });
 
-// app.get("/products/:id", (req, res) => {
-//   const productId = req.params.id;
-//   getProductById(productId)
-//     .then((product) => res.json(product))
-//     .then((product) => console.log(product));
-// });
+app.post("/notes/add", doAuthMiddleware, async (req, res) => {
+  try {
+    const owner_id = req.userClaims.sub;
+    const owner = req.userClaims.sub;
+    const newNote = {
+      owner_id,
+      owner,
+      title: req.body.title,
+      content: req.body.content,
+      private: true,
+    };
+
+    // console.log("New Note:", newNote);
+    console.log("Request-Userclaims:", req.userClaims);
+    const addedNote = await addNote(newNote);
+    res.json(addedNote);
+  } catch (err) {
+    console.log(err);
+    res
+      .status(500)
+      .json({ message: err.toString() || "Internal Server Error." });
+  }
+});
+
+app.delete("/note/delete/:id([0-9a-fA-F]{24})", async (req, res) => {
+  try {
+    const noteId = req.params.id;
+    console.log("frontend", noteId);
+    const removedNote = await removeNote(noteId);
+    res.json({ removedNote });
+  } catch (err) {
+    console.log(err);
+    res
+      .status(500)
+      .json({ message: err.toString() || "Failed to delete Note" });
+  }
+});
 
 // app.post("/products/add", (req, res) => {
 //   //   if (!req.body || !req.body.productName) {

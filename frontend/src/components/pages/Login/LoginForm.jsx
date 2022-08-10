@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { apiBaseUrl } from "../../../api/api.js";
 
 const LoginForm = ({ setToken }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("developer@gmail.com");
+  const [password, setPassword] = useState("12345");
 
   const [errorMessage, setErrorMessage] = useState("");
 
