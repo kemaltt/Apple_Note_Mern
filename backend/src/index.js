@@ -98,10 +98,9 @@ app.get("/notes", (_, res) => {
 app.post("/notes/add", doAuthMiddleware, async (req, res) => {
   try {
     const owner_id = req.userClaims.sub;
-    const owner = req.userClaims.sub;
+
     const newNote = {
       owner_id,
-      owner,
       title: req.body.title,
       content: req.body.content,
       private: true,

@@ -6,7 +6,6 @@ export default function AddNote({ token }) {
   let navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [owner, setOwner] = useState("");
 
   const [feedback, setFeedback] = useState("Add a new Note!");
 
@@ -22,7 +21,6 @@ export default function AddNote({ token }) {
         token: `JWT ${token}`,
       },
       body: JSON.stringify({
-        owner,
         title,
         content,
       }),
