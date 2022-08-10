@@ -1,13 +1,81 @@
-body {
+*{
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+.home {
+  padding: 20vh 0;
+  background-image: url('https://images.unsplash.com/photo-1501618669935-18b6ecb13d6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1149&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+#headline{
+  padding-left: 15vw;
+
+}
+.note_list{
+display: grid;
+grid-template-columns: 1fr 1fr ;
+place-items: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.addnewnote {
+  padding: 0 25vw 0 0;
+}
+
+.notesmap {
+  padding: 0 15vw 0 3vw;
+}
+
+
+.delete_btn:active{
+  background-color: #ff0000;
+
+}
+.edit_btn:active{
+  background-color: yellowgreen;
+}
+.sub_btn:active{
+  margin-top: 5px;
+  background-color: blue;
+}
+
+.delete_btn,
+.edit_btn ,.sub_btn{
+  border : none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background-color: gray;
+  color: white;
+}
+
+.buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.note_item {
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 40vw;
+}
+
+.edit_form {
+  margin: 15px 10px 10px 10px;
+}
+
+.edit_grid {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.edit_grid input {
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  border-radius: 6px;
 }

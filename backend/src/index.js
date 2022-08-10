@@ -10,6 +10,7 @@ const { refreshUserToken } = require("./use-cases/refresh-user-token");
 
 const {
   getNotes,
+  editNote,
   addNote,
   removeNote,
   getNoteById,
@@ -129,6 +130,27 @@ app.delete("/note/delete/:id([0-9a-fA-F]{24})", async (req, res) => {
     res
       .status(500)
       .json({ message: err.toString() || "Failed to delete Note" });
+  }
+});
+
+app.put("/note/edit/:id([0-9a-fA-F]{24})", async (req, res) => {
+  try {
+    const noteId = req.params.id;
+    console.log("noteId: ", noteId);
+    const editedNote = {
+      id: noteId,
+      title: req.body.title,
+      content: req.body.content,
+    };
+    console.log("Editednote: ", editedNote);
+    const updatedNote = await editNote(noteId, editedNote);
+    res.json(updatedNote);
+    console.log("Updatednote: ", updatedNote);
+  } catch (err) {
+    console.log(err);
+    res
+      .status(500)
+      .json({ message: err.toString() || "Failed to update Product" });
   }
 });
 

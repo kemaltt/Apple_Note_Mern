@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { apiBaseUrl } from "../../api/api.js";
 
 export default function AddNote({ token }) {
-  const [notes, setNotes] = useState([]);
+  let navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [owner, setOwner] = useState("");
@@ -28,11 +29,10 @@ export default function AddNote({ token }) {
     })
       .then((res) => res.json())
       .then(() => setFeedback(`New note added to database!`));
+    setTitle("");
+    setContent("");
+    navigate("/", { replace: true });
   };
-
-  // useEffect(() => {
-  //   getNotes();
-  // }, [notes]);
 
   return (
     <div>
@@ -52,12 +52,12 @@ export default function AddNote({ token }) {
             value={content}
             name=""
             id=""
-            cols="50"
-            rows="30"
+            cols="30"
+            rows="10"
             placeholder="Note here..."
           ></textarea>
         </div>
-        <button className="add_btn" onClick={addNote}>
+        <button className="sub_btn" onClick={addNote}>
           Add Note
         </button>
       </form>

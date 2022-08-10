@@ -28,23 +28,23 @@ function addNote(note) {
   });
 }
 
-// function toggleTodoDone(todoId, newDoneValue) {
-//   return new Promise((resolve, reject) => {
-//     getDB()
-//       .then((db) =>
-//         db.collection("todos2").findOneAndUpdate(
-//           { _id: ObjectId(todoId) }, // query/filter (aka. was soll geupdated werden?)
-//           { $set: { done: newDoneValue } }, // updateInfo
-//           { returnDocument: "after" }
-//         )
-//       )
-//       .then((result) => {
-//         if (result.ok === 1) resolve(result.value);
-//         else reject({ msg: "Error updating todo." }); // custom error message ? oder vlt nur result
-//       })
-//       .catch((err) => reject(err));
-//   });
-// }
+async function editNote(noteId, editedNote) {
+  const db = await getDB();
+  const result = await db.collection("noteData").findOneAndUpdate(
+    { _id: ObjectId(noteId) },
+    {
+      $set: {
+        title: editedNote.title,
+        content: editedNote.content,
+      },
+    },
+    { returnDocument: "after" }
+  );
+  if (!(result.ok === 1)) {
+    throw new Error({ msg: "Error updating Note." });
+  }
+  return result.value;
+}
 
 function removeNote(noteId) {
   return new Promise((resolve, reject) => {
@@ -65,4 +65,5 @@ module.exports = {
   addNote,
   removeNote,
   getNoteById,
+  editNote,
 };
